@@ -53,24 +53,25 @@ class CsvImportSeeder extends Seeder
                     ->where('customer_code', $data['ID Pelanggan'])
                     ->value('id');
 
-                // 2. Import Package
-                $package = DB::table('packages')
-                    ->where('kategori_layanan', $data['Kategori Layanan'])
-                    ->where('nama_paket', $data['Paket'])
-                    ->first();
-
-                if (!$package) {
-                    $packageId = DB::table('packages')->insertGetId([
+               // 2. Import Package
+                DB::table('packages')->updateOrInsert(
+                    [
                         'kategori_layanan' => $data['Kategori Layanan'],
                         'nama_paket' => $data['Paket'],
+                    ],
+                    [
                         'deskripsi' => $data['Deskripsi Paket'],
                         'harga' => $data['Harga Paket'],
-                        'created_at' => now(),
+                        'durasi' => (int) $data['Durasi (Menit)'],
                         'updated_at' => now(),
-                    ]);
-                } else {
-                    $packageId = $package->id;
-                }
+                        'created_at' => now(),
+                    ]
+                );
+
+                $packageId = DB::table('packages')
+                    ->where('kategori_layanan', $data['Kategori Layanan'])
+                    ->where('nama_paket', $data['Paket'])
+                    ->value('id');
 
                 // 3. Import Booking
                 DB::table('bookings')->updateOrInsert(

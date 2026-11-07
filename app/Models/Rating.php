@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rating extends Model
 {
-    protected $fillable = [
+protected $fillable = [
     'booking_id',
     'customer_id',
     'rating',
+    'ulasan',
 ];
 
 public function booking()

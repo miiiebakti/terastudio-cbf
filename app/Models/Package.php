@@ -11,6 +11,7 @@ class Package extends Model
     'nama_paket',
     'deskripsi',
     'harga',
+    'durasi',
 ];
 
 public function bookings()
