@@ -17,7 +17,7 @@
     </style>
 </head>
 
-<body class="bg-[#F5FEFF] text-[#0E2F76]">
+<body class="min-h-screen flex flex-col bg-[#F5FEFF] text-[#0E2F76]">
 
     <!-- Navbar -->
     <nav class="bg-white shadow-sm sticky top-0 z-50">
@@ -74,7 +74,7 @@
     </nav>
 
     <!-- Konten Halaman -->
-    <main>
+    <main class="flex-1 w-full">
     <div class="max-w-7xl mx-auto px-6 pt-4">
 
         @if (session('success'))
